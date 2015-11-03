@@ -109,6 +109,7 @@ class Graph:
 			print line
 
 class Search:
+	#prevents infinite loops
 	MAXPATH = 100
 
 	def __init__(self, start, goal, graph, heuristic):
@@ -142,16 +143,6 @@ class Search:
 		node.h = self.heuristic(node)
 		node.f = node.g + node.h
 
-	#returns path of search
-	def getPath(self, node):
-		path = []
-		next = node
-		for i in range(0, self.MAXPATH):
-			if next:
-				path.append((next.x,next.y))
-				next = next.parent
-		return path[::-1]
-
 	def printSearch(self):
 		path = self.getPath(self.goal)
 		print "==========Results=========="
@@ -183,6 +174,17 @@ class Search:
 				self.printSearch()
 				break		
 
+	#returns path of search
+	def getPath(self, node):
+		path = []
+		next = node
+		for i in range(0, self.MAXPATH):
+			if next:
+				path.append((next.x,next.y))
+				next = next.parent
+		return path[::-1]
+
+		
 if __name__ == "__main__":
 	fin = open(argv[1])
 	g = Graph(WIDTH,HEIGHT)

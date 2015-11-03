@@ -146,8 +146,6 @@ class Graph:
 			print line
 
 class Search:
-	MAXPATH = 100
-
 	def __init__(self, start, goal, graph):
 		self.path = []
 		self.utils = []
